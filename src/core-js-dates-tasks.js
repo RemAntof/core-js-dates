@@ -261,9 +261,6 @@ function getQuarter(date) {
 function getWorkSchedule(period, countWorkDays, countOffDays) {
   const [startDay, startMonth, startYear] = period.start.split('-');
   const [endDay, endMonth, endYear] = period.end.split('-');
-  console.log(period);
-  console.log(countWorkDays);
-  console.log(countOffDays);
   let startDate = new Date(
     +new Date(startYear, startMonth - 1, startDay) + 60 * 60 * 1000
   );
@@ -302,8 +299,12 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
  * Date(2022, 2, 1) => false
  * Date(2020, 2, 1) => true
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = date.getFullYear();
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return true;
+  }
+  return false;
 }
 
 module.exports = {
